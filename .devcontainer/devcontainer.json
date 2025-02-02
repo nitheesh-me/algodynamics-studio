@@ -1,0 +1,24 @@
+{
+    "name": "Bun",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        // Update 'VARIANT' to pick a Bun version.
+        // choosing specific version for reproducibility 
+        "args": {
+            // "VARIANT": "latest"
+            "VARIANT": "1"
+        }
+    },
+    "forwardPorts": [
+        4321
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "astro-build.astro-vscode"
+            ]
+        }
+    }
+}
