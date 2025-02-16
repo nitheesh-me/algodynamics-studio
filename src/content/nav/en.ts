@@ -1,5 +1,6 @@
 export default {
 	start: 'Start',
+	'start.experiments': 'Experiments',
 	'start.welcome': 'Welcome, world!',
 	'start.newProject': 'Start a new project',
 	'start.config': 'Configuration',

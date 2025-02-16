@@ -29,3 +29,23 @@ Run the dev server
 ```
 bun dev
 ```
+
+To add shad/cn components, use commands like (v0.dev gives code with these components)
+```
+bunx --bun shadcn@canary add button
+```
+
+This is due to Tailwind CSS v4.
+
+---
+
+Visit `http://localhost:4444/en/experiments/bubble-sort/` to see the bubble sort experiment.
+check `src/components/Machines/bubblesort/SwapMachine.tsx` and `src/content/docs/en/experiments/bubble-sort.mdx` for how to customize the content
+
+
+
+TODO:
+- [ ] Setup XState for the machines
+- [ ] Remove/Replace Astro Docs elements
+- [ ] Clean up unnecessary components and content
+- [ ] Add more experiments

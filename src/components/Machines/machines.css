@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.sl-markdown-content .machine :not(a, strong, em, del, span, input, code, br)+ :not(a, strong, em, del, span, input, code, br, :where(.not-content *)) {
+    margin-top: 0rem;
+}
+
+.machine * {
+    margin: 2px;
+}

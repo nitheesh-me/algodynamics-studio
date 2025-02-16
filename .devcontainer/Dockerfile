@@ -7,6 +7,7 @@ RUN apt-get update \
         nano \
         vim-tiny \
         ca-certificates \
+        gnupg2 \
     && apt-get auto-remove -y \
     && apt-get clean -y \
     && chsh -s $(which bash) bun \
