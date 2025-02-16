@@ -1,0 +1,90 @@
+---
+title: WordPress에서 마이그레이션
+description: 기존 WordPress 프로젝트를 Astro로 마이그레이션하기 위한 팁
+sidebar:
+  label: WordPress
+type: migration
+stub: true
+framework: WordPress
+i18nReady: true
+---
+
+import PackageManagerTabs from '~/components/tabs/PackageManagerTabs.astro'
+
+[WordPress](https://wordpress.org)는 PHP 및 MySQL을 기반으로 빌드된 오픈 소스 개인 출판 시스템입니다.
+
+:::tip
+[Astro 프로젝트의 헤드리스 CMS로 WordPress를 사용](/ko/guides/cms/wordpress/)할 수 있습니다. 새로운 Astro 프로젝트에서 기존 WordPress 콘텐츠를 사용하려면 가이드를 따르세요.
+:::
+
+## WordPress와 Astro의 주요 유사점
+
+WordPress와 Astro는 프로젝트를 마이그레이션하는 데 도움이 되는 몇 가지 유사점을 공유합니다.
+
+- WordPress와 Astro는 모두 블로그와 같은 [콘텐츠 중심 웹사이트](/ko/concepts/why-astro/#콘텐츠-중심)에 이상적이며 Markdown에서 콘텐츠 작성을 지원합니다 (WordPress에 플러그인 필요). 새 콘텐츠를 추가하는 과정은 다르지만, WordPress 편집기에서 Markdown 구문을 사용한 적이 있다면 Astro 블로그의 [Markdown 파일 작성](/ko/guides/markdown-content/)이 익숙하게 느껴질 것입니다.
+
+- WordPress와 Astro는 모두 [사이트 디자인을 "블록"으로 생각](/ko/concepts/islands/) (컴포넌트)하도록 권장합니다. Astro에서는 미리 빌드된 플러그인에 의존하기보다는 [이러한 블록을 생성하기 위해 더 많은 코드를 직접 작성](/ko/basics/astro-components/)할 것입니다. 하지만 사이트의 개별 부분과 해당 부분이 페이지에 표시되는 방식을 생각하면 익숙해질 것입니다.
+
+## WordPress와 Astro의 주요 차이점
+
+Astro에서 WordPress 사이트를 다시 빌드하면 몇 가지 중요한 차이점을 발견할 수 있습니다.
+
+- WordPress 사이트는 온라인 대시보드를 사용하여 편집됩니다. Astro에서는 [코드 편집기](/ko/editor-setup/) 및 개발 환경을 사용하여 사이트를 유지 관리합니다. 컴퓨터에서 로컬로 개발하거나 IDX, StackBlitz, CodeSandbox, Gitpod와 같은 클라우드 편집기/개발 환경을 선택할 수 있습니다.
+
+- WordPress에는 광범위한 플러그인과 테마 마켓이 있습니다. Astro에서는 일부 테마와 [통합](https://astro.build/integrations/)을 사용할 수 있지만 이제 타사 솔루션을 찾는 대신 기존 기능 중 상당수를 직접 빌드해야 할 수도 있습니다. 또는 기능이 내장된 [Astro 테마](https://astro.build/themes)로 시작하도록 선택할 수도 있습니다!
+
+- WordPress는 콘텐츠를 데이터베이스에 저장합니다. Astro에서는 각 페이지의 콘텐츠에 대한 [프로젝트 디렉터리](/ko/basics/project-structure/)에 개별 파일 (일반적으로 Markdown 또는 MDX)이 있습니다. 또는 기존 WordPress 사이트에서도 [콘텐츠용 CMS](/ko/guides/cms/)를 사용하고 Astro를 사용하여 데이터를 가져와 표시할 수 있습니다.
+
+## WordPress에서 Astro로 전환
+
+WordPress 블로그를 Astro로 변환하려면 블로그 테마 시작 템플릿으로 시작하거나 [테마 쇼케이스](https://astro.build/themes)에서 더 많은 커뮤니티 블로그 테마를 탐색하세요.
+
+공식 스타터 중 하나를 사용하여 새로운 Astro 프로젝트를 시작하려면 `--template` 인수를 `create astro` 명령에 전달할 수 있습니다. 또는 [GitHub의 기존 Astro 저장소에서 새 프로젝트를 시작](/ko/install-and-setup/#cli-마법사를-통한-설치)할 수 있습니다.
+
+  <PackageManagerTabs>
+    <Fragment slot="npm">
+    ```shell
+    npm create astro@latest -- --template blog
+    ```
+    </Fragment>
+    <Fragment slot="pnpm">
+    ```shell
+    pnpm create astro@latest --template blog
+    ```
+    </Fragment>
+    <Fragment slot="yarn">
+    ```shell
+    yarn create astro --template blog
+    ```
+    </Fragment>
+  </PackageManagerTabs>
+
+계속해서 [기존 WordPress 블로그를 Astro용 CMS로 사용](/ko/guides/cms/wordpress/)할 수 있습니다. 이는 게시물 작성에 WordPress 대시보드를 계속 사용한다는 의미입니다. 여러분의 콘텐츠는 WordPress에서 관리되지만 Astro 사이트의 다른 모든 측면은 여러분의 코드 편집 환경에서 구축되며 WordPress 사이트와 별도로 [Astro 사이트를 배포](/ko/guides/deploy/)하게 됩니다. (동일한 웹사이트 URL을 유지하려면 호스트에서 도메인을 업데이트하세요!)
+
+코드 편집기에서 작업하고 GitHub를 사용하여 사이트를 저장하고 배포하는 것이 처음이라면 [Astro의 블로그 구축 튜토리얼](/ko/tutorial/0-introduction/)을 수강할 수 있습니다. 필요한 모든 계정과 설정을 안내해 드립니다! 또한 [Astro 컴포넌트를 직접 빌드](/ko/tutorial/3-components/)하는 방법을 배우게 되며 WordPress를 사용하여 콘텐츠를 작성하지 않기로 선택한 경우 [Astro에서 직접 블로그 게시물을 추가](/ko/tutorial/2-pages/2/)하는 방법을 보여줍니다.
+
+기존 게시물 콘텐츠를 모두 Astro로 이동하려는 경우 [WordPress에서 Markdown을 내보내기 위한 이 도구](https://github.com/lonekorean/wordpress-export-to-markdown)가 도움이 될 수 있습니다. [규모가 크거나 복잡한 WordPress 사이트를 Markdown으로 변환](https://swizec.com/blog/how-to-export-a-large-wordpress-site-to-markdown/)해야 하는 경우 결과를 일부 조정해야 할 수도 있습니다.
+
+포트폴리오나 문서 사이트 등 다른 유형의 사이트를 변환하려면 [astro.new](https://astro.new)에서 더 많은 공식 시작 템플릿을 참조하세요. 각 프로젝트의 GitHub 저장소에 대한 링크는 물론 IDX, StackBlitz, CodeSandbox, Gitpod 온라인 개발 환경에서 작업 중인 프로젝트를 열 수 있는 원클릭 링크도 찾을 수 있습니다.
+
+## 커뮤니티 자료
+
+- [Why I switched from WordPress to Astro](https://dev.to/fratzinger/why-i-switched-from-wordpress-to-astro-5ge)
+- [Shattering Headless WordPress Build Times with Astro’s Content Layer API](https://andrewkepson.com/blog/headless-wordpress/build-time-astro-content-layer-api/)
+- [Building an Astro Website with WordPress as a Headless CMS](https://blog.openreplay.com/building-an-astro-website-with-wordpress-as-a-headless-cms/)
+- [Building a Headless WordPress Site with Astro](https://wpengine.com/builders/building-headless-wordpress-site-astro/)
+- [Headless WordPress with Astro – Build a Simple Blog from Scratch with Tailwind CSS](https://fullstackdigital.io/blog/headless-wordpress-with-astro-build-a-simple-blog/)
+- [Leveraging WordPress as a Headless CMS for Your Astro Website: API Configuration & Data Fetching](https://medium.com/@bangemann.dev/configure-wordpress-rest-api-setup-data-fetching-4af5161095f6)
+- [Build a static site with WordPress and Astro](https://kinsta.com/blog/wordpress-astro/)
+- [How to Set Up a Headless WordPress Site with Astro](https://dev.to/mathiasahlgren/how-to-set-up-a-headless-wordpress-site-with-astro-3a2h)
+- [Building an E-commerce Website with Headless WordPress and Astro](https://shaxadd.medium.com/building-an-e-commerce-website-with-headless-wordpress-and-astro-2712d8c8b735)
+- [Astro WordPress Starter Theme](https://astro.build/themes/details/astro-wordpress-starter/)
+- [Kubric Astro Theme](https://astro.build/themes/details/kubrick-astro/)
+- [Migrate WordPress to Astro](https://delucis.github.io/dewp/)
+- 📺 [Make a Headless WordPress Site with Astro](https://www.youtube.com/watch?v=54U7dVmhyxE)
+- 📺 [Astro Headless WordPress Starter Demo](https://www.youtube.com/watch?v=BcoxZZIfESI)
+- 📺 [Astro + WPGraphQL for more secure WordPress sites](https://www.youtube.com/watch?v=fWxn-r83ygQ)
+- 📺 [WordPress Headless with Astro - Installing Astro and Fetching posts with WP-GraphQL](https://www.youtube.com/watch?v=2PSqABrME28)
+- 📺 [Going Headless WordPress with Astro](https://www.youtube.com/watch?v=MP2TR6Z_YTc)
+
+- 여러분의 자료를 추가하세요!

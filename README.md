@@ -8,3 +8,24 @@ Uses the following
 - [Dev Container](https://code.visualstudio.com/docs/remote/containers) for `bun` enviroment (needs docker to operate).
 - [Bun](https://bun.red/) for project scaffolding and management.
 - [Astro](https://astro.build/) for static site generation.
+
+
+## To Run
+
+Install dependencies
+```
+bun install
+```
+
+You can choose to disable telemetry
+
+```
+astro telemetry disable
+```
+
+And finally to 
+
+Run the dev server
+```
+bun dev
+```

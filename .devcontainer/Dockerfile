@@ -3,9 +3,10 @@ FROM oven/bun:${VARIANT}
 
 RUN apt-get update \
     && apt-get -y install --no-install-recommends \
-    git \
-    nano \
-    vim-tiny \
+        git \
+        nano \
+        vim-tiny \
+        ca-certificates \
     && apt-get auto-remove -y \
     && apt-get clean -y \
     && chsh -s $(which bash) bun \

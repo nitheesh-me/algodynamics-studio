@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "command": "bun run dev",
+      "name": "Development server: Bun",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "npm run dev",
+      "name": "Development server: Nuxt",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}
