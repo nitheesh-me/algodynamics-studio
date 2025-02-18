@@ -39,7 +39,7 @@ const MultiplyAddRandomMachine = () => {
               key={`array1-${index}`}
               onClick={() => handleClick(index, 1)}
               className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-                selectedIndex1 === index ? "bg-blue-400 text-white" : "bg-gray-200 text-gray-800"
+                selectedIndex1 === index ? 'bg-blue-400 text-white' : 'bg-gray-800 text-white'
               }`}
             >
               {num}
@@ -56,7 +56,7 @@ const MultiplyAddRandomMachine = () => {
               key={`array2-${index}`}
               onClick={() => handleClick(index, 2)}
               className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-                selectedIndex2 === index ? "bg-blue-400 text-white" : "bg-gray-200 text-gray-800"
+                selectedIndex2 === index ? 'bg-blue-400 text-white' : 'bg-gray-800 text-white'
               }`}
             >
               {num}

@@ -12,11 +12,9 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 import { Steps } from '@astrojs/starlight/components';
 import Badge from "~/components/Badge.astro";
 import { Tabs, TabItem } from '@astrojs/starlight/components';
-
 import MultiplyAddRandomMachine from '~/components/Machines/matrixmultiplication/MultiplyAddRandomMachine'
-
-
-
+import MultipleAddInorderMachine from '~/components/Machines/matrixmultiplication/MultiplyAddInorderMachine'
+import DotProductSequential from '~/components/Machines/matrixmultiplication/DotProductSequential'
 
 # Matrix Multiplication
 
@@ -29,18 +27,17 @@ We present a series of interactive experiments to help you understand the Matrix
 Interactive Abstract Machines for Bubblesort
 <Steps>
 1. [Mulitply and add Randomly](#mulitply-and-add-randomly)
-2. [Mulitply and Add inorder]()
-3. [Dot Product Sequentially]()
+2. [Mulitply and Add inorder](#multiply-and-add-inorder)
+3. [Dot Product Sequentially](#dot-product-sequentially)
 4. [Dot products between a row and column of two matrices]()
 5. [Dot Products in order]()
-6. [Matrix Multiplication ](#order-machine)
+6. [Matrix Multiplication ]()
 </Steps>
 
 ## Mulitply and add Randomly
 
-The Swap Machine is a simple machine that swaps two elements in an array. It is the basic building block for the Bubblesort algorithm.
-
-Below you can select any two elements in the array and swap them.
+The Multiply and Add Randomly Machine is a simple machine that multiplies/adds any two elements randomly selected from different arrays.
+Below you can select any two elements and add/multiply them.
 
 <Tabs>
   <TabItem label="machine">
@@ -48,32 +45,37 @@ Below you can select any two elements in the array and swap them.
   </TabItem>
 </Tabs>
 
-## Order Machine
+## Mulitply and Add Inorder
 
-The Order Machine is a simple machine that compares two elements in an array and orders them in a specific way. It is the second building block for the Bubblesort algorithm.
+The aim is to find the Dot Product of two arrays by multiplying two elements having same indices from each array and adding them to output.
+Below you can select the numbers and find the Dot Product.
+
+<Tabs>
+  <TabItem label="machine">
+    <MultipleAddInorderMachine elements={[5, 3, 8, 1, 2]} client:load />
+  </TabItem>
+</Tabs>
+
+## Dot Product Sequentially
+
+The aim is to find the Dot Product of two arrays by multiplying two elements having same indices sequentially from each array and adding them to output.
+Below you can select the numbers and find the Dot Product.
+
+<Tabs>
+  <TabItem label="machine">
+    <DotProductSequential elements={[5, 3, 8, 1, 2]} client:load />
+  </TabItem>
+</Tabs>
+
 
 :::caution[TODO]
-Implement the Order Machine.
+Implement
+Dot products between a row and column of two matrices, Dot Products in order ,Matrix Multiplication
 :::
 
 <Box icon="question-mark">
 
 ### Test your knowledge
-
-{/* Which of the following is...
-1. A code editor, for making changes to your files and their content?
-
-    <MultipleChoice>
-      <Option>
-        web browser
-      </Option>
-      <Option>
-        Terminal
-      </Option>
-      <Option isCorrect>
-        VS Code
-      </Option>
-    </MultipleChoice> */}
 
 1. Can you select two elements in the array and swap them using the Swap Machine?
 
@@ -127,8 +129,9 @@ Implement the Order Machine.
 ## Checklist for moving on
 
 <Checklist>
-- [ ] I have understood how the Swap Machine works.
-- [ ] I have understood how `swap` can be used to sort an array.
-- [ ] Want to learn more about the Bubblesort algorithm.
+- [ ] I have understood how the Multiply and Add Randomly works.
+- [ ] I have understood how the Multiply and Add Inorder works.
+- [ ] I have understood how the Dot Product Sequentially works.
+- [ ] Want to learn more about the Matrix Multiplication algorithm.
 </Checklist>
 </Box>
