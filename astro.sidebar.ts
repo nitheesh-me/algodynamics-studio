@@ -15,7 +15,8 @@ export const sidebar = [
 		items: [
 			'getting-started',
 			group('start.experiments', {
-				items: ['experiments/bubble-sort'],
+				items: ['experiments/bubble-sort',
+					'experiments/matrix-multiplication'],
 			}),
 			group('start.welcome', {
 				items: ['concepts/why-astro', 'concepts/islands', 'tutorial/0-introduction'],
