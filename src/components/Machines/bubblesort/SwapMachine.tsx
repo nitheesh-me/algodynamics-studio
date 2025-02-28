@@ -1,65 +1,113 @@
-"use client"
+import { useState } from "react";
+// import ArrayVisualizer from "../components/ArrayVisualizer";
+import ArrayVisualizer from "~/components/libraries/ArrayVisualizer";
 
-// TODO: modify to use xstate
+const SortingPage = () => {
+  const initialArray = [10, 20, 15, 30, 5, 25];
+  const [array, setArray] = useState([...initialArray]);
+  const [highlighted, setHighlighted] = useState<number[]>([]);
+  const [compare, setCompare] = useState<number[]>([]);
+  const [swapping, setSwapping] = useState<[number, number] | null>(null);
+  const [sorted, setSorted] = useState<number[]>([]);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [sortingSteps, setSortingSteps] = useState<
+    { arr: number[]; highlight: number[]; compare: number[]; swap?: [number, number]; sorted: number[] }[]
+  >([]);
 
-import "@/components/Machines/machines.css"
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Button } from "@/components/Machines/ui/button"
+  // Generate sorting steps (Bubble Sort Example)
+  const generateBubbleSortSteps = (arr: number[]) => {
+    let steps: { arr: number[]; highlight: number[]; compare: number[]; swap?: [number, number]; sorted: number[] }[] = [];
+    let tempArray = [...arr];
+    let sortedIndexes: number[] = [];
 
-const SwapMachine: React.FC = () => {
-  const [numbers, setNumbers] = useState([4, 3, 2, 1])
-  const [selectedIndices, setSelectedIndices] = useState<number[]>([])
-  const [isSorted, setIsSorted] = useState(false)
+    for (let i = 0; i < tempArray.length - 1; i++) {
+      for (let j = 0; j < tempArray.length - i - 1; j++) {
+        steps.push({ arr: [...tempArray], highlight: [j, j + 1], compare: [j, j + 1], sorted: [...sortedIndexes] });
 
-  const handleElementClick = (index: number) => {
-    if (selectedIndices.includes(index)) {
-      setSelectedIndices(selectedIndices.filter((i) => i !== index))
-    } else if (selectedIndices.length < 2) {
-      setSelectedIndices([...selectedIndices, index])
+        if (tempArray[j] > tempArray[j + 1]) {
+          [tempArray[j], tempArray[j + 1]] = [tempArray[j + 1], tempArray[j]];
+          steps.push({ arr: [...tempArray], highlight: [], compare: [], swap: [j, j + 1], sorted: [...sortedIndexes] });
+        }
+      }
+      sortedIndexes.push(tempArray.length - 1 - i);
     }
-  }
 
-  const swapElements = () => {
-    if (selectedIndices.length === 2) {
-      const newNumbers = [...numbers]
-      const [index1, index2] = selectedIndices
-      ;[newNumbers[index1], newNumbers[index2]] = [newNumbers[index2], newNumbers[index1]]
-      setNumbers(newNumbers)
-      setSelectedIndices([])
-      checkIfSorted(newNumbers)
+    return steps;
+  };
+
+  const startSorting = () => {
+    const steps = generateBubbleSortSteps(array);
+    setSortingSteps(steps);
+    setCurrentStep(0);
+    applyStep(0);
+  };
+
+  const applyStep = (stepIndex: number) => {
+    if (stepIndex < sortingSteps.length) {
+      setCurrentStep(stepIndex);
+      setArray(sortingSteps[stepIndex].arr);
+      setHighlighted(sortingSteps[stepIndex].highlight);
+      setCompare(sortingSteps[stepIndex].compare);
+      setSwapping(sortingSteps[stepIndex].swap || null);
+      setSorted(sortingSteps[stepIndex].sorted);
     }
-  }
+  };
 
-  const checkIfSorted = (arr: number[]) => {
-    setIsSorted(arr.every((v, i, a) => !i || a[i - 1] <= v))
-  }
+  const nextStep = () => {
+    if (currentStep < sortingSteps.length - 1) {
+      applyStep(currentStep + 1);
+    }
+  };
 
-  useEffect(() => {
-    checkIfSorted(numbers)
-  }, [numbers]) // Added numbers to the dependency array
+  const resetArray = () => {
+    setArray([...initialArray]);
+    setSortingSteps([]);
+    setCurrentStep(0);
+    setHighlighted([]);
+    setCompare([]);
+    setSwapping(null);
+    setSorted([]);
+  };
 
   return (
-    <div className={`machine p-4 rounded-lg shadow transition-colors duration-500 ${isSorted ? "bg-green-400": "bg-primary-100"}`}>
-      <h2 className="text-xl font-bold mb-4">Swap Machine</h2>
-      <div className="flex justify-center space-x-4 mb-4">
-        {numbers.map((num, index) => (
-          <button
-            key={index}
-            className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-              selectedIndices.includes(index) ? "bg-blue-400 text-white" : "bg-gray-200 text-gray-800"
-            }`}
-            onClick={() => handleElementClick(index)}
-          >
-            {num}
-          </button>
-        ))}
-      </div>
-      <Button onClick={swapElements} disabled={selectedIndices.length !== 2} className="btn btn-secondary w-full">
-        Swap
-      </Button>
-    </div>
-  )
-}
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center p-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">Sorting Algorithm Visualization</h1>
 
-export default SwapMachine
+      {/* Array Visualizer */}
+      <ArrayVisualizer
+        array={array}
+        highlightedIndices={highlighted}
+        compareIndices={compare}
+        swappingIndices={swapping || [-1, -1]}
+        sortedIndices={sorted}
+        showValues={true}
+        showIndices={true}
+        label="Bubble Sort Visualization"
+      />
+
+      {/* Buttons for Interaction */}
+      <div className="flex space-x-4 mt-6">
+        <button
+          onClick={startSorting}
+          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition duration-300"
+        >
+          Start Sorting
+        </button>
+        <button
+          onClick={nextStep}
+          className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition duration-300"
+        >
+          Next Step
+        </button>
+        <button
+          onClick={resetArray}
+          className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg transition duration-300"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default SortingPage;
