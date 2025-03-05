@@ -13,6 +13,7 @@ import { Steps } from '@astrojs/starlight/components';
 import Badge from "~/components/Badge.astro";
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import GraphBFS from '~/components/Machines/GraphTraversals/GraphBFS'
+import GraphDFS from '~/components/Machines/GraphTraversals/GraphDFS'
 
 # Graph Traversal
 
@@ -22,19 +23,73 @@ import GraphBFS from '~/components/Machines/GraphTraversals/GraphBFS'
 
 We present a series of interactive experiments to help you understand the Graph Traversal algorithms.
 
-Interactive Abstract Machines for Graph Treaversal
+Interactive Abstract Machines for Graph Traversal
 <Steps>
 1. [Breadth First Search](#breadth-first-search)
+1. [Depth First Search](#depth-first-search)
 </Steps>
 
 ## Breadth First Search
 
-The aim is to find the Dot Product of two arrays by multiplying two elements having same indices sequentially from each array and adding them to output.
-Below you can select the numbers and find the Dot Product.
+The aim is to perform BFS on a graph.
+{/* 
+<Tabs>
+  <TabItem label="machine">
+    <GraphBFS client:load />
+  </TabItem>
+</Tabs> */}
+
+
 
 <Tabs>
   <TabItem label="machine">
-    <GraphBFS elements={[5, 3, 8, 1, 2]} client:load />
+    <GraphBFS 
+      nodes={[
+        { id: 1, value: 'Server 1' },
+        { id: 2, value: 'Router A' },
+        { id: 3, value: 'Switch B' },
+        { id: 4, value: 'Firewall' },
+        { id: 5, value: 'Database' }
+      ]}
+      edges={[
+        { source: 1, target: 2 },
+        { source: 1, target: 3 },
+        { source: 2, target: 4 }
+      ]}
+      client:load 
+    />
+  </TabItem>
+</Tabs>
+
+## Depth First Search
+
+The aim is to perform DFS on a graph.
+{/* 
+<Tabs>
+  <TabItem label="machine">
+    <GraphBFS client:load />
+  </TabItem>
+</Tabs> */}
+
+
+
+<Tabs>
+  <TabItem label="machine">
+    <GraphDFS 
+      nodes={[
+        { id: 1, value: 'Server 1' },
+        { id: 2, value: 'Router A' },
+        { id: 3, value: 'Switch B' },
+        { id: 4, value: 'Firewall' },
+        { id: 5, value: 'Database' }
+      ]}
+      edges={[
+        { source: 1, target: 2 },
+        { source: 1, target: 3 },
+        { source: 2, target: 4 }
+      ]}
+      client:load 
+    />
   </TabItem>
 </Tabs>
 
