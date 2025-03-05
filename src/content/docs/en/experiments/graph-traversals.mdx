@@ -1,7 +1,7 @@
 ---
 type: tutorial
-title: Matrix Multiplication
-description: Explore the "Matrix Multiplication" algorithm through a series of interactive experiments. Learn the algorithm step-by-step and visualize and interact with its execution in real-time.
+title: Graph Traversal
+description: Explore the "Graph traversal" algorithms through a series of interactive experiments. Learn the algorithm step-by-step and visualize and interact with its execution in real-time.
 i18nReady: false
 ---
 import Checklist from '~/components/Checklist.astro';
@@ -12,68 +12,39 @@ import PreCheck from '~/components/tutorial/PreCheck.astro';
 import { Steps } from '@astrojs/starlight/components';
 import Badge from "~/components/Badge.astro";
 import { Tabs, TabItem } from '@astrojs/starlight/components';
-import MultiplyAddRandomMachine from '~/components/Machines/matrixmultiplication/MultiplyAddRandomMachine'
-import MultipleAddInorderMachine from '~/components/Machines/GraphTraversals/GraphBFS'
-import DotProductSequential from '~/components/Machines/matrixmultiplication/DotProductSequential'
+import GraphBFS from '~/components/Machines/GraphTraversals/GraphBFS'
 
-# Matrix Multiplication
+# Graph Traversal
 
 <PreCheck>
-  - Understand how Matrix Multiplication works.
+  - Understand how Graph Traversal.
 </PreCheck>
 
-We present a series of interactive experiments to help you understand the Matrix Multiplication algorithm.
+We present a series of interactive experiments to help you understand the Graph Traversal algorithms.
 
-Interactive Abstract Machines for Bubblesort
+Interactive Abstract Machines for Graph Treaversal
 <Steps>
-1. [Mulitply and add Randomly](#mulitply-and-add-randomly)
-2. [Mulitply and Add inorder](#multiply-and-add-inorder)
-3. [Dot Product Sequentially](#dot-product-sequentially)
-4. [Dot products between a row and column of two matrices]()
-5. [Dot Products in order]()
-6. [Matrix Multiplication ]()
+1. [Breadth First Search](#breadth-first-search)
 </Steps>
 
-## Mulitply and add Randomly
-
-The Multiply and Add Randomly Machine is a simple machine that multiplies/adds any two elements randomly selected from different arrays.
-Below you can select any two elements and add/multiply them.
-
-<Tabs>
-  <TabItem label="machine">
-    <MultiplyAddRandomMachine elements={[5, 3, 8, 1, 2]} client:load />
-  </TabItem>
-</Tabs>
-
-## Mulitply and Add Inorder
-
-The aim is to find the Dot Product of two arrays by multiplying two elements having same indices from each array and adding them to output.
-Below you can select the numbers and find the Dot Product.
-
-<Tabs>
-  <TabItem label="machine">
-    <MultipleAddInorderMachine elements={[5, 3, 8, 1, 2]} client:load />
-  </TabItem>
-</Tabs>
-
-## Dot Product Sequentially
+## Breadth First Search
 
 The aim is to find the Dot Product of two arrays by multiplying two elements having same indices sequentially from each array and adding them to output.
 Below you can select the numbers and find the Dot Product.
 
 <Tabs>
   <TabItem label="machine">
-    <DotProductSequential elements={[5, 3, 8, 1, 2]} client:load />
+    <GraphBFS elements={[5, 3, 8, 1, 2]} client:load />
   </TabItem>
 </Tabs>
 
 
-:::caution[TODO]
+{/* :::caution[TODO]
 Implement
 Dot products between a row and column of two matrices, Dot Products in order ,Matrix Multiplication
-:::
+::: */}
 
-<Box icon="question-mark">
+{/* <Box icon="question-mark">
 
 ### Test your knowledge
 
@@ -134,4 +105,4 @@ Dot products between a row and column of two matrices, Dot Products in order ,Ma
 - [ ] I have understood how the Dot Product Sequentially works.
 - [ ] Want to learn more about the Matrix Multiplication algorithm.
 </Checklist>
-</Box>
+</Box> */}
