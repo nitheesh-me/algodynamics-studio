@@ -1,0 +1,41 @@
+---
+type: tutorial
+title: Linear Search
+description: Explore the "Linear Search" algorithm through a series of interactive experiments. Learn the algorithm step-by-step and visualize and interact with its execution in real-time.
+i18nReady: false
+---
+import Checklist from '~/components/Checklist.astro';
+import Box from '~/components/tutorial/Box.astro';
+import MultipleChoice from '~/components/tutorial/MultipleChoice.astro';
+import Option from '~/components/tutorial/Option.astro';
+import PreCheck from '~/components/tutorial/PreCheck.astro';
+import { Steps } from '@astrojs/starlight/components';
+import Badge from "~/components/Badge.astro";
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import RandomSelectionComponent from '~/components/Machines/searching/RandomSelectionMachine.tsx';
+
+# Linear Search
+
+<PreCheck>
+  - Understand how Linear Search works.
+</PreCheck>
+
+We present a series of interactive experiments to help you understand the Linear Search algorithm.
+
+Interactive Abstract Machines for Linear Search
+<Steps>
+1. [Random Selection Machine]()
+2. [Iterative Selection Machine]()
+</Steps>
+
+## Random Selection Machine
+
+The Swap Machine is a simple machine that swaps two elements in an array. It is the basic building block for the Bubblesort algorithm.
+
+Below you can select any two elements in the array and swap them.
+
+<Tabs>
+  <TabItem label="Machine">
+    <RandomSelectionComponent client:load />
+  </TabItem>
+</Tabs>
